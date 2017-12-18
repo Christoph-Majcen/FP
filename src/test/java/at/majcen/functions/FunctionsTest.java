@@ -43,7 +43,7 @@ public class FunctionsTest {
 
 		String result = Functions.fold(stringList, "", (string1, string2) -> string1 + string2);
 
-		assertThat("Hello darkness my old friend").isEqualTo(result);
+		assertThat(result).isEqualTo("Hello darkness my old friend");
 	}
 
 	@Test
@@ -62,6 +62,33 @@ public class FunctionsTest {
 		double result = Functions.fold(doubleList, 1., (double1, double2) -> double1 * double2);
 
 		assertThat(result).isEqualTo(120.);
+	}
+
+	@Test
+	public void testScan1() {
+		List<Integer> intList = List.of(1,2,3,4,5);
+
+		List<Integer> result = Functions.scan(intList, 0, (int1, int2) -> int1 + int2);
+
+		assertThat(result).containsExactly(1, 3, 6, 10, 15);
+	}
+
+	@Test
+	public void testScan2() {
+		List<Double> doubleList = List.of(1., 2., 3., 4., 5.);
+
+		List<Double> result = Functions.scan(doubleList, 1., (double1, double2) -> double1 * double2);
+
+		assertThat(result).containsExactly(1.0, 2.0, 6.0, 24.0, 120.);
+	}
+
+	@Test
+	public void testScan3() {
+		List<String> stringList = List.of("Hello ", "darkness ", "my ", "old ", "friend");
+
+		List<String> result = Functions.scan(stringList, "", (string1, string2) -> string1 + string2);
+
+		assertThat(result).containsExactly("Hello ", "Hello darkness ", "Hello darkness my ", "Hello darkness my old ", "Hello darkness my old friend");
 	}
 
 	@Test
