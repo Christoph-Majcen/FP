@@ -26,6 +26,7 @@ gradle-app.setting
 .idea/**/uiDesigner.xml
 .idea/**/gradle.xml
 .idea/**/libraries
+.idea/**
 cmake-build-debug/
 .idea/**/mongoSettings.xml
 *.iws
